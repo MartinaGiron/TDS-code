@@ -1,5 +1,3 @@
-setwd("D:\\OneDrive - University of the Philippines\\University of the Philippines\\Data Science\\[0] TDS Articles\\Working with Survey Data")
-
 #### Load the Data ####
 library(tidyverse)
 survey_data <- readxl::read_excel("Random Survey Data.xlsx")
@@ -9,7 +7,6 @@ survey_cols <- c(paste0("design_q", rep(1:5)), paste0("quality_q", rep(1:5)), pa
 colnames(survey_data) <- survey_cols                                                  
 
 #### Recode the Likert responses ####
-
 likert_recode <- function(x) {
   as.numeric(case_when(
     x == "Strongly Disagree" ~ 1,
@@ -19,7 +16,6 @@ likert_recode <- function(x) {
     x == "Strongly Agree" ~ 5,
   ))
 }
-
 
 # Negative Recode 
 likert_recode_negative <- function(x) {
@@ -42,13 +38,13 @@ survey_negative <- survey_data %>%
   select(design_q3, quality_q3, quality_q4, pricing_q5) %>%
   mutate_all(likert_recode_negative)
 
-survey_recoded <- cbind(survey_positive, survey_negative) #Recombine data
+#Recombine data
+survey_recoded <- cbind(survey_positive, survey_negative) 
 
 #### Calculate Totals ####
-
+# Overall Total
 survey_recoded$total <- rowSums(survey_recoded) #Create column of total score per person
 
-# Overall Total
 survey_recoded <- cbind(id = survey_data$id, survey_recoded) #Recombine data with Respondent IDs
 
 # Total by category
@@ -61,7 +57,6 @@ survey_recoded <- survey_recoded %>%
 
 
 #### Reshape the data #### 
-# Pivoting
 survey_long <- survey_recoded %>%
   pivot_longer(data = .,
                cols = 2:16,
