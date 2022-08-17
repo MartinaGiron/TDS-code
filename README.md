@@ -5,7 +5,7 @@ I aim to help budding data scientists and analysts gain a firm foundation in the
 I also aspire to use data to forward my advocacies on human rights and information literacy.<br />
 📊 My tech stack includes R, Excel, SQL, and Tableau. <br />
 
-[Visit My Profile](https://medium.com/@martstats) 
+[Visit My Medium Page](https://medium.com/@martstats) 
 
 # Article Catalog
 
